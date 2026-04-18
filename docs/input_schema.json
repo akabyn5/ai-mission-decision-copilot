@@ -1,0 +1,7 @@
+{
+  "subsystem": "thermal",
+  "metric": "temperature_core",
+  "value": 85,
+  "mission_phase": "nominal",
+  "timestamp": "2026-04-17T12:30:00Z"
+}

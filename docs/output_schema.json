@@ -1,0 +1,6 @@
+{
+  "classification": "thermal degradation",
+  "severity": "high",
+  "recommended_action": "reduce load and activate cooling",
+  "reasoning": "Temperature exceeds nominal threshold while efficiency is decreasing"
+}
