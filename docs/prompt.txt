@@ -23,6 +23,25 @@ Return ONLY valid JSON with the following structure:
   "reasoning": "string"
 }
 
+Example:
+
+Input:
+{
+  "subsystem": "thermal",
+  "metric": "temperature_core",
+  "value": 85,
+  "mission_phase": "nominal",
+  "timestamp": "2026-04-17T12:30:00Z"
+}
+
+Output:
+{
+  "classification": "thermal degradation",
+  "severity": "high",
+  "recommended_action": "reduce load and activate cooling",
+  "reasoning": "Temperature exceeds nominal threshold while efficiency is decreasing"
+}
+
 Telemetry input:
 
 If you cannot determine the anomaly, still return the JSON with best possible estimation.
