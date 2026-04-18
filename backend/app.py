@@ -5,7 +5,7 @@ import re
 from dotenv import load_dotenv
 load_dotenv()  # Reads the .env file and injects variables into the environment
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from google import genai  # ✅ New unified SDK replaces google.generativeai
 
 # =========================
@@ -183,7 +183,13 @@ Telemetry Input:
         return jsonify(ai_output), 200
     except Exception:
         return jsonify(FALLBACK_RESPONSE), 200
-
+    
+    
+@app.route('/')
+def serve_frontend():
+    # Sirve el index.html desde la carpeta frontend
+    frontend_dir = os.path.join(os.path.dirname(__file__), '..', 'frontend')
+    return send_from_directory(frontend_dir, 'index.html')
 
 # =========================
 # Run server

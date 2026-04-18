@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Mission Copilot</title>
+</head>
+<body>
+
+    <h1>AI Mission Decision Copilot</h1>
+
+    <!-- SCENARIOS -->
+    <h3>Select Scenario:</h3>
+
+    <button onclick="setScenario('thermal')">Thermal Anomaly</button>
+    <button onclick="setScenario('energy')">Energy Anomaly</button>
+    <button onclick="setScenario('communication')">Communication Loss</button>
+
+    <br><br>
+
+    <!-- ANALYZE BUTTON -->
+    <button onclick="analyze()">Analyze</button>
+
+    <hr>
+
+    <!-- RESULT -->
+    <h2>Result</h2>
+
+    <p><strong>Classification:</strong> <span id="classification">-</span></p>
+    <p><strong>Severity:</strong> <span id="severity">-</span></p>
+    <p><strong>Recommended Action:</strong> <span id="action">-</span></p>
+    <p><strong>Reasoning:</strong> <span id="reasoning">-</span></p>
+
+    <script>
+        let selectedScenario = null;
+
+        function setScenario(type) {
+            if (type === 'thermal') {
+                selectedScenario = {
+                    "subsystem": "thermal",
+                    "metric": "temperature_core",
+                    "value": 85,
+                    "mission_phase": "nominal",
+                    "timestamp": new Date().toISOString()
+                };
+            }
+
+            if (type === 'energy') {
+                selectedScenario = {
+                    "subsystem": "power",
+                    "metric": "battery_voltage",
+                    "value": 40,
+                    "mission_phase": "nominal",
+                    "timestamp": new Date().toISOString()
+                };
+            }
+
+            if (type === 'communication') {
+                selectedScenario = {
+                    "subsystem": "communication",
+                    "metric": "signal_strength",
+                    "value": 10,
+                    "mission_phase": "nominal",
+                    "timestamp": new Date().toISOString()
+                };
+            }
+
+            alert("Scenario selected: " + type);
+        }
+
+        async function analyze() {
+            if (!selectedScenario) {
+                alert("Please select a scenario first.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/analyze", {
+                     method: "POST",
+
+                     headers: {
+                        "Content-Type": "application/json"
+                     },
+                      body: JSON.stringify(selectedScenario)
+                    });
+                    console.log("STATUS:", response.status);
+                    const data = await response.json(); 
+                    console.log("DATA:", data);
+
+                // MAP JSON → UI
+                document.getElementById("classification").innerText = data.classification || "N/A";
+                document.getElementById("severity").innerText = data.severity || "N/A";
+                document.getElementById("action").innerText = data.recommended_action || "N/A";
+                document.getElementById("reasoning").innerText = data.reasoning || "N/A";
+
+            } catch (error) {
+                alert("Error analyzing telemetry");
+                console.error(error);
+            }
+        }
+    </script>
+
+</body>
+</html>
