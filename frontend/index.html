@@ -18,7 +18,7 @@
     <br><br>
 
     <!-- ANALYZE BUTTON -->
-    <button onclick="analyze()">Analyze</button>
+    <button id="analyzeBtn" onclick="analyze()">Analyze</button>
 
     <hr>
 
@@ -67,15 +67,26 @@
 
             document.getElementById("selectedScenario").innerText = type;
         }
+        
+       async function analyze() {
+        if (!selectedScenario) {
+            alert("Please select a scenario first.");
+            return;
+        }
+        
+        const btn = document.getElementById("analyzeBtn");
 
-        async function analyze() {
-            if (!selectedScenario) {
-                alert("Please select a scenario first.");
-                return;
-            }
+        //  BLOQUEAR BOTÓN
+        btn.disabled = true;
+        btn.innerText = "Analyzing...";
 
-            try {
-                const response = await fetch("/analyze", {
+        //  AGREGA ESTO AQUÍ
+        document.getElementById("classification").innerText = "Analyzing...";
+        document.getElementById("severity").innerText = "-";
+        document.getElementById("action").innerText = "-";
+        document.getElementById("reasoning").innerText = "Processing telemetry...";
+        try {
+            const response = await fetch("/analyze", {
                      method: "POST",
 
                      headers: {
@@ -83,6 +94,7 @@
                      },
                       body: JSON.stringify(selectedScenario)
                     });
+
                     console.log("STATUS:", response.status);
                     const data = await response.json(); 
                     console.log("DATA:", data);
@@ -92,14 +104,23 @@
                 document.getElementById("severity").innerText = data.severity || "N/A";
                 document.getElementById("action").innerText = data.recommended_action || "N/A";
                 document.getElementById("reasoning").innerText = data.reasoning || "N/A";
+                
+                
+                // DESBLOQUEAR
+                btn.disabled = false;
+
 
             } catch (error) {
                 document.getElementById("classification").innerText = "Error";
                  document.getElementById("severity").innerText = "-";
                  document.getElementById("action").innerText = "-";
                  document.getElementById("reasoning").innerText = "Error analyzing telemetry";
+                 
                  console.error(error);
                 }
+                
+                //  DESBLOQUEAR TAMBIÉN AQUÍ
+                btn.disabled = false;
         }
     </script>
 
