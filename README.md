@@ -52,6 +52,7 @@ Structured JSON response
         ↓
 UI Rendering
 ```
+<img width="1264" height="848" alt="2" src="https://github.com/user-attachments/assets/3fab3a9b-aa70-42fe-9fdd-8be01923bcc2" />
 
 ---
 
@@ -134,6 +135,12 @@ Open in your browser: `http://127.0.0.1:5000`
    - Reasoning
 
 ---
+<img width="1400" height="714" alt="5" src="https://github.com/user-attachments/assets/db05340f-f9ef-41bd-a6ac-3f7761f08758" />
+
+
+
+
+
 
 ### 📊 **Input Schema**
 
