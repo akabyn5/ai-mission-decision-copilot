@@ -60,22 +60,22 @@ UI Rendering
 
 ```
 AI-MISSION-DECISION-COPILOT/
-├── backend/
-│   ├── venv/
-│   ├── .env
-│   └── app.py
-├── docs/
-│   ├── input_schema.json
-│   ├── output_schema.json
-│   └── prompt.txt
-├── frontend/
-│   ├── index.html
-│   └── script.js
-├── .gitignore
-└── README.md
-```
 
----
+* 📁 **.vscode**
+    * 📄 `launch.json`
+* 📁 **backend**
+    * 📁 **venv**
+    * 📄 `app.py`
+    * 📄 `test_scenarios.json`
+* 📁 **docs**
+    * 📁 **imagen**
+    * 📄 `input_schema.json`
+    * 📄 `output_schema.json`
+    * 📄 `prompt.txt`
+* 📁 **frontend**
+* 📄 `.gitignore`
+* 📄 `README.md`
+
 
 ### ⚙️ **Setup Instructions**
 
