@@ -143,6 +143,9 @@ Telemetry Input:
             )
 
         raw_text = response.text.strip() if response.text else ""
+        print("\n===== RAW GEMINI RESPONSE =====")
+        print(raw_text)
+        print("================================\n")
 
         if not raw_text:
             return jsonify(FALLBACK_RESPONSE), 200
