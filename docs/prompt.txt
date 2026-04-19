@@ -45,3 +45,13 @@ Output:
 Telemetry input:
 
 If you cannot determine the anomaly, still return the JSON with best possible estimation.
+
+Additional constraints (strict):
+
+- Use consistent terminology across similar inputs
+- Do not vary phrasing unnecessarily between responses
+- Prefer short, direct, technical statements
+- Avoid synonyms when a standard term exists (e.g., always use "thermal degradation", not variations)
+- Keep reasoning concise and structured in one sentence
+- Do not include uncertainty language such as "might", "could", or "possibly"
+- Maintain the same tone and vocabulary as the provided example
