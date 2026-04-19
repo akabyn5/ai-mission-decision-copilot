@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()  # Reads the .env file and injects variables into the environment
 
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 from google import genai  # ✅ New unified SDK replaces google.generativeai
 
 # =========================
@@ -24,6 +25,7 @@ if not api_key_loaded:
 # Flask app
 # =========================
 app = Flask(__name__)
+CORS(app)
 
 # =========================
 # Load prompt from file
@@ -76,7 +78,7 @@ def validate_ai_output(data):
 # Set to False during development to preserve your daily quota.
 # Flip to True only when doing a real demo or final test.
 # -------------------------
-USE_AI = False
+USE_AI = True
 
 # -------------------------
 # Global fallback response

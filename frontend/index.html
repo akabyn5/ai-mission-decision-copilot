@@ -5,7 +5,7 @@
     <title>AI Mission Copilot</title>
 </head>
 <body>
-
+<p><strong>AI-powered mission control system that analyzes spacecraft telemetry and generates decisions in real time.</strong></p>
     <h1>AI Mission Decision Copilot</h1>
 
     <!-- SCENARIOS -->
@@ -14,7 +14,7 @@
     <button onclick="setScenario('thermal')">Thermal Anomaly</button>
     <button onclick="setScenario('energy')">Energy Anomaly</button>
     <button onclick="setScenario('communication')">Communication Loss</button>
-
+<p><strong>Selected Scenario:</strong> <span id="selectedScenario">None</span></p>
     <br><br>
 
     <!-- ANALYZE BUTTON -->
@@ -24,9 +24,10 @@
 
     <!-- RESULT -->
     <h2>Result</h2>
-
+    <hr>
+    <h2>AI Decision Output</h2></hr>
     <p><strong>Classification:</strong> <span id="classification">-</span></p>
-    <p><strong>Severity:</strong> <span id="severity">-</span></p>
+    <p><strong>Severity:</strong> <span id="severity" style="font-weight:bold;">-</span></p>
     <p><strong>Recommended Action:</strong> <span id="action">-</span></p>
     <p><strong>Reasoning:</strong> <span id="reasoning">-</span></p>
 
@@ -64,7 +65,7 @@
                 };
             }
 
-            alert("Scenario selected: " + type);
+            document.getElementById("selectedScenario").innerText = type;
         }
 
         async function analyze() {
@@ -74,7 +75,7 @@
             }
 
             try {
-                const response = await fetch("http://127.0.0.1:5000/analyze", {
+                const response = await fetch("/analyze", {
                      method: "POST",
 
                      headers: {
@@ -93,9 +94,12 @@
                 document.getElementById("reasoning").innerText = data.reasoning || "N/A";
 
             } catch (error) {
-                alert("Error analyzing telemetry");
-                console.error(error);
-            }
+                document.getElementById("classification").innerText = "Error";
+                 document.getElementById("severity").innerText = "-";
+                 document.getElementById("action").innerText = "-";
+                 document.getElementById("reasoning").innerText = "Error analyzing telemetry";
+                 console.error(error);
+                }
         }
     </script>
 
