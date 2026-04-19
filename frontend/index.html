@@ -41,30 +41,29 @@
                     "metric": "temperature_core",
                     "value": 85,
                     "mission_phase": "nominal",
-                    "timestamp": new Date().toISOString()
+                    "timestamp": "2026-04-17T12:30:00Z"
                 };
             }
-
             if (type === 'energy') {
                 selectedScenario = {
                     "subsystem": "power",
                     "metric": "battery_voltage",
-                    "value": 40,
+                    "value": 21,
                     "mission_phase": "nominal",
-                    "timestamp": new Date().toISOString()
+                    "timestamp": "2026-04-17T12:32:00Z"
                 };
             }
-
+            
             if (type === 'communication') {
                 selectedScenario = {
-                    "subsystem": "communication",
-                    "metric": "signal_strength",
-                    "value": 10,
+                    "subsystem": "communications",
+                    "metric": "packet_loss",
+                    "value": 35,
                     "mission_phase": "nominal",
-                    "timestamp": new Date().toISOString()
+                    "timestamp": "2026-04-17T12:35:00Z"
                 };
             }
-
+            
             document.getElementById("selectedScenario").innerText = type;
         }
 

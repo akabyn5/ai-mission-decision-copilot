@@ -16,6 +16,8 @@ Rules:
 
 Return ONLY valid JSON with the following structure:
 
+Return ONLY valid JSON with the following structure:
+
 {
   "classification": "string",
   "severity": "low | medium | high | critical",
@@ -40,6 +42,40 @@ Output:
   "severity": "high",
   "recommended_action": "reduce load and activate cooling",
   "reasoning": "Temperature exceeds nominal threshold while efficiency is decreasing"
+}
+
+Input:
+{
+  "subsystem": "power",
+  "metric": "battery_voltage",
+  "value": 21,
+  "mission_phase": "nominal",
+  "timestamp": "2026-04-17T12:32:00Z"
+}
+
+Output:
+{
+  "classification": "energy degradation",
+  "severity": "high",
+  "recommended_action": "prioritize essential systems and reduce power consumption",
+  "reasoning": "Battery voltage below nominal threshold indicates power system degradation"
+}
+
+Input:
+{
+  "subsystem": "communications",
+  "metric": "packet_loss",
+  "value": 35,
+  "mission_phase": "nominal",
+  "timestamp": "2026-04-17T12:35:00Z"
+}
+
+Output:
+{
+  "classification": "communication interference",
+  "severity": "medium",
+  "recommended_action": "adjust transmission parameters and verify signal integrity",
+  "reasoning": "Packet loss above acceptable threshold indicates communication instability"
 }
 
 Telemetry input:

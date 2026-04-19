@@ -1,26 +1,23 @@
-[
-  {
+{
+  "thermal": {
     "subsystem": "thermal",
     "metric": "temperature_core",
-    "value": 95,
+    "value": 85,
     "mission_phase": "nominal",
-    "timestamp": "2026-04-17T12:30:00Z",
-    "description": "Critical overheating beyond safe threshold"
+    "timestamp": "2026-04-17T12:30:00Z"
   },
-  {
+  "energy": {
     "subsystem": "power",
     "metric": "battery_voltage",
-    "value": 18,
+    "value": 21,
     "mission_phase": "nominal",
-    "timestamp": "2026-04-17T12:32:00Z",
-    "description": "Severe battery degradation nearing failure"
+    "timestamp": "2026-04-17T12:32:00Z"
   },
-  {
-    "subsystem": "communication",
-    "metric": "signal_strength",
-    "value": 2,
+  "communication": {
+    "subsystem": "communications",
+    "metric": "packet_loss",
+    "value": 35,
     "mission_phase": "nominal",
-    "timestamp": "2026-04-17T12:35:00Z",
-    "description": "Near total communication loss"
+    "timestamp": "2026-04-17T12:35:00Z"
   }
-]
+}
