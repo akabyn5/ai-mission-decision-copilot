@@ -1,9 +1,9 @@
-
-
 ### 🚀 **AI Mission Decision Copilot**
 
 **An AI-powered mission control assistant** that analyzes spacecraft telemetry and generates structured, explainable decisions in real time using **Google Gemini**.
 
+
+<img width="1168" height="784" alt="1" src="https://github.com/user-attachments/assets/9f16ac63-23b5-4804-a004-96e0a6ebf9bc" />
 ---
 
 ### 📌 **Overview**
