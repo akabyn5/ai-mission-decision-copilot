@@ -233,5 +233,6 @@ This project focuses on:
 - Simplicity
 - Reliability
 - Demonstrability
+<img width="1168" height="784" alt="6" src="https://github.com/user-attachments/assets/cd077966-afa6-4135-9519-ecd7fb010529" />
 
 \
