@@ -34,6 +34,9 @@ The system prioritizes:
    - Extracts a structured JSON response
 4. The UI displays the results clearly for quick evaluation
 
+
+<img width="752" height="564" alt="work" src="https://github.com/user-attachments/assets/a9d1f7ac-326d-4c5e-bd7c-2a14ed21d5d3" />
+
 ---
 
 ### 🏗 **System Architecture**
