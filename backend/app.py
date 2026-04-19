@@ -41,13 +41,13 @@ def load_prompt():
 # Extract JSON from AI text
 # =========================
 def extract_json(text):
-    # 1. Try to extract JSON inside ```json ... ``` fences
+    # 1. Try fenced JSON first
     fence_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', text, re.DOTALL)
     if fence_match:
         return fence_match.group(1)
 
-    # 2. Fallback: extract first JSON object in text (greedy)
-    match = re.search(r'\{.*\}', text, re.DOTALL)
+    # 2. Non-greedy fallback (FIXED)
+    match = re.search(r'\{.*?\}', text, re.DOTALL)
     if match:
         return match.group(0)
 
@@ -153,6 +153,7 @@ Telemetry Input:
         # Extract and parse JSON
         # -------------------------
         json_str = extract_json(raw_text)
+        print("EXTRACTED JSON:", json_str)
 
         if not json_str:
             return jsonify(FALLBACK_RESPONSE), 200
@@ -167,6 +168,7 @@ Telemetry Input:
         # -------------------------
         is_valid, error_msg = validate_ai_output(ai_output)
         if not is_valid:
+            print("VALIDATION ERROR:", error_msg)
             return jsonify(FALLBACK_RESPONSE), 200
         # -------------------------
         # # Normalize output
@@ -185,7 +187,8 @@ Telemetry Input:
         # Final response
         # -------------------------
         return jsonify(ai_output), 200
-    except Exception:
+    except Exception as e:
+        print("ERROR:", str(e))
         return jsonify(FALLBACK_RESPONSE), 200
     
     
