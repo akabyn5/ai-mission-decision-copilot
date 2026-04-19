@@ -41,17 +41,16 @@ def load_prompt():
 # Extract JSON from AI text
 # =========================
 def extract_json(text):
-    # First, try to strip markdown code fences that Gemini often adds.
-    # Gemini frequently returns: ```json\n{...}\n```
-    # This pattern removes that wrapper before we search for JSON.
-    text = re.sub(r'```(?:json)?\s*', '', text)
-    text = re.sub(r'```', '', text)
-    
-    # Now search for the JSON object. Using non-greedy match
-    # prevents capturing multiple objects if there's extra text.
-    match = re.search(r'\{.*?\}', text, re.DOTALL)
+    # 1. Try to extract JSON inside ```json ... ``` fences
+    fence_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', text, re.DOTALL)
+    if fence_match:
+        return fence_match.group(1)
+
+    # 2. Fallback: extract first JSON object in text (greedy)
+    match = re.search(r'\{.*\}', text, re.DOTALL)
     if match:
         return match.group(0)
+
     return None
 
 # =========================
